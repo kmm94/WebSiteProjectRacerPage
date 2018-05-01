@@ -45,4 +45,10 @@ img.KarimIMG {
     text-align: center
 }
 
+.newsPost {
+    border-style: solid;
+    border-width: thin;
+    padding: 10px;
+}
+
 
