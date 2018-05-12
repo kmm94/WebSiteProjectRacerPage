@@ -13,5 +13,6 @@
     <p>
         Jokes aside, im a ung man, 24years of age and im currently studing Software Engeneering.
         <br>
-        Beside that im working as a swim coach and as a student supervisor.
+        Beside that im working as a swim coach and as a student
+		supervisor.
     </p>

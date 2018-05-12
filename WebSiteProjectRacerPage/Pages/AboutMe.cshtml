@@ -3,9 +3,10 @@
 @{
     ViewData["Title"] = "AboutMe";
 }
+@using Microsoft.AspNetCore.Html;
 
 <img class="KarimIMG" src="~/images/KarimPNG.jpg" alt="a selfi with the creator of the page: Karim">
 <h1 class="centertext">About me</h1>
 <div class="centertext">
-    @Model.GetAboutmeText()
+    @(new HtmlString(@Model.GetAboutmeText()))
 </div>
