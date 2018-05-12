@@ -11,6 +11,31 @@ namespace WebSiteProjectRacerPage.Pages
     {
         public void OnGet()
         {
+            
+        }
+
+        public string GetAboutmeText()
+        {
+            var dataFile = "PersistentData/AboutMe.txt";
+            string result = "The file does not exist.";
+            if (System.IO.File.Exists(dataFile))
+            {
+                var userData = System.IO.File.ReadAllLines(dataFile);
+                if (userData == null)
+                {
+                    // Empty file.
+                    result = "The file is empty.";
+                } else
+                {
+                    result = null;
+                    foreach (string item in userData)
+                    {
+                        result += item;
+                    }
+                }
+            }
+
+            return result;
         }
     }
 }
