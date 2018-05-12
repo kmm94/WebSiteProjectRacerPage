@@ -1,13 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.Diagnostics;
-using System.Linq;
-using System.Net;
 using System.Net.Mail;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.Extensions.Primitives;
 
 namespace WebSiteProjectRacerPage.Pages
 {
@@ -23,7 +17,7 @@ namespace WebSiteProjectRacerPage.Pages
             var email = Request.Form["email"];
             var name = Request.Form["name"];
 
-            SendEmailAsync(name, email);
+            SendEmailAsync(name, email).Wait();
         }
 
         private async Task SendEmailAsync(string name, string email)
@@ -42,7 +36,11 @@ namespace WebSiteProjectRacerPage.Pages
                 SmtpServer.Port = 587;
                 SmtpServer.Credentials = new System.Net.NetworkCredential("karimkuku@hotmail.com", "313Moller");
                 SmtpServer.EnableSsl = true;
-                SmtpServer.Send(message);
+                SmtpServer.SendMailAsync(message);
+
+                //saving email in a file
+                string saveingEmail = "\n "+ email;
+                System.IO.File.AppendAllTextAsync("mails/emails.txt", saveingEmail);
                 Debug.WriteLine("email have been saved");
             }
         }
