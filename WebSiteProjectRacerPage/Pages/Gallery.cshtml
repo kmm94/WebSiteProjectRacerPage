@@ -1,0 +1,49 @@
+﻿@page
+@model WebSiteProjectRacerPage.Pages.GalleryModel
+@{
+    ViewData["Title"] = "Gallery";
+}
+@section Styles {
+    <link rel="stylesheet" href="@Url.Content("~/css/lightgallery.css")" />
+}
+@using System.IO;
+<h2>Gallery</h2>
+<p>
+    Here a is a small gallery<br />
+    <a asp-page="/ImageUpload">click here if you want to upload a picture to the gallery</a>
+</p>
+
+
+<div id="lightgallery">
+    @{ foreach (var imgPath in Model.GetImages())
+        {
+            <a href="@imgPath">
+                <img class="img-responsive" src="@imgPath" />
+            </a>
+            }
+
+        }
+</div>
+
+@section Scripts {
+    <script src="https://cdn.rawgit.com/sachinchoolur/lightgallery.js/master/dist/js/lightgallery.js"></script>
+    <script src="https://cdn.rawgit.com/sachinchoolur/lg-autoplay.js/master/dist/lg-autoplay.js"></script>
+    <script src="https://cdn.rawgit.com/sachinchoolur/lg-fullscreen.js/master/dist/lg-fullscreen.js"></script>
+    <script src="https://cdn.rawgit.com/sachinchoolur/lg-zoom.js/master/dist/lg-zoom.js"></script>
+    <script src="https://cdn.rawgit.com/sachinchoolur/lg-thumbnail.js/master/dist/lg-thumbnail.js"></script>
+    <script type="text/javascript">
+        lightGallery(document.getElementById('lightgallery'), {
+            mode: 'lg-fade',
+            escKey: true,
+            hideControlOnEnd: true,
+            thumbnail: true,
+            autoplay: false,
+            progressBar: true,
+            fullScreen: true,
+            zoom: true,
+            animateThumb: true,
+            showThumbByDefault: true
+            
+        });
+    </script>
+}

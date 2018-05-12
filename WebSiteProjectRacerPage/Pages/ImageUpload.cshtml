@@ -1,0 +1,35 @@
+﻿@page
+@model WebSiteProjectRacerPage.Pages.ImageUploadModel
+@{
+    ViewData["Title"] = "ImageUpload";
+}
+@section Styles {
+    <link rel="stylesheet" href="~/css/dropzone.css" />
+}
+<h2>ImageUpload</h2>
+
+<div class="row">
+    <div class="col-md-12">
+        <h2>Upload Image</h2>
+        <form method="post" enctype="multipart/form-data" id="imageUploadForm" class="dropzone">
+            <div class="fallback">
+                <div class="form-group">
+                    <input name="image" type="file" class="form-control" accept="image/*" />
+                </div>
+                <input type="submit" value="Upload" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+
+@section Scripts {
+    <script src="~/lib/dropzone.js"></script>
+    <script>
+        $("#imageUploadForm").dropzone({
+            url: "/imageupload",
+            paramName: "image",
+            acceptedFiles: "image/*"
+        });
+    </script>
+}
