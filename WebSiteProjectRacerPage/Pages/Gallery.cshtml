@@ -23,6 +23,14 @@
 
 
 @section Scripts {
+    <script src="~/js/jquery.justifiedGallery.min.js"></script>
+    <script>
+        $("#lightgallery").justifiedGallery({
+            rowHeight: 150,
+            lastRow: 'nojustify',
+            margins: 1
+        });
+    </script>
     <script src="https://cdn.rawgit.com/sachinchoolur/lightgallery.js/master/dist/js/lightgallery.js"></script>
     <script src="https://cdn.rawgit.com/sachinchoolur/lg-autoplay.js/master/dist/lg-autoplay.js"></script>
     <script src="https://cdn.rawgit.com/sachinchoolur/lg-fullscreen.js/master/dist/lg-fullscreen.js"></script>
@@ -42,9 +50,5 @@
             showThumbByDefault: true
 
         });
-    </script>
-    <script src="~/js/jquery.justifiedGallery.min.js"></script>
-    <script>
-        $("#lightgallery").justifiedGallery();
-    </script>
+    </script>s
 }
