@@ -23,7 +23,8 @@ namespace WebSiteProjectRacerPage.Pages
 
             Task<string[]> getsub = new Task<string[]>(()=> emailManager.GetSubricbbers());
             Task<string> getaboutMeText = new Task<string>(() => aboutMeManager.GetTextForAboutMe());
-            //For at udføre begge metoder 'samtidigt'
+
+           
             getsub.Start();
             getaboutMeText.Start();
 
