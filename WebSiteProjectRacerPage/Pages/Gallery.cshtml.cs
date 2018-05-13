@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Web;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using WebSiteProjectRacerPage.Domain;
 
 namespace WebSiteProjectRacerPage.Pages
 {
@@ -17,16 +18,8 @@ namespace WebSiteProjectRacerPage.Pages
 
         public string[] GetImages()
         {
-            string path = "wwwroot/uploads";
-            var files = Directory.GetFiles(path);
-            var images = new List<string>();
-            foreach (var file in files)
-            {
-                string s = file.Replace("\\", " / ").Replace("wwwroot", "").Replace(" ", "");
-                images.Add(s);
-            }
-
-            return images.ToArray();
+            var imf = new ImageFetcher();
+            return imf.GetImagesPaths();
         }
     }
 }

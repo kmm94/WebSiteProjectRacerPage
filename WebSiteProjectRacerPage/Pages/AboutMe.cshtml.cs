@@ -5,11 +5,13 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Html;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using WebSiteProjectRacerPage.Domain;
 
 namespace WebSiteProjectRacerPage.Pages
 {
     public class AboutMeModel : PageModel
     {
+        AboutMeManager aboutMeManager = new AboutMeManager();
         public void OnGet()
         {
             
@@ -17,26 +19,7 @@ namespace WebSiteProjectRacerPage.Pages
 
         public HtmlString GetAboutmeText()
         {
-            var dataFile = "PersistentData/AboutMe.txt";
-            string result = "The file does not exist.";
-            if (System.IO.File.Exists(dataFile))
-            {
-                var userData = System.IO.File.ReadAllLines(dataFile);
-                if (userData == null)
-                {
-                    // Empty file.
-                    result = "The file is empty.";
-                } else
-                {
-                    result = null;
-                    foreach (string item in userData)
-                    {
-                        result += item;
-                    }
-                }
-            }
-
-            return new HtmlString(result);
+            return new HtmlString(aboutMeManager.GetTextForAboutMe());
         }
     }
 }
