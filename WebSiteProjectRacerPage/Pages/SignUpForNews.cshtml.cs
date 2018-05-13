@@ -39,7 +39,7 @@ namespace WebSiteProjectRacerPage.Pages
                 SmtpServer.SendMailAsync(message);
 
                 //saving email in a file
-                string saveingEmail = "\n"+ email;
+                string saveingEmail = ";\n"+ email;
                 System.IO.File.AppendAllTextAsync("mails/emails.txt", saveingEmail);
                 Debug.WriteLine("email have been saved");
             }

@@ -15,7 +15,7 @@ namespace WebSiteProjectRacerPage.Pages
             
         }
 
-        public string GetAboutmeText()
+        public HtmlString GetAboutmeText()
         {
             var dataFile = "PersistentData/AboutMe.txt";
             string result = "The file does not exist.";
@@ -36,7 +36,7 @@ namespace WebSiteProjectRacerPage.Pages
                 }
             }
 
-            return result;
+            return new HtmlString(result);
         }
     }
 }

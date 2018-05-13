@@ -30,7 +30,6 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="mails\" />
     <Folder Include="wwwroot\Data\" />
   </ItemGroup>
 </Project>
