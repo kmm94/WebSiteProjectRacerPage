@@ -5,17 +5,16 @@
 }
 @section Styles {
     <link rel="stylesheet" href="@Url.Content("~/css/lightgallery.css")" />
-    <link rel="stylesheet" href="~/css/gallary.css" />
+    <link rel="stylesheet" href="~/css/justifiedGallery.min.css" />
 }
 @using System.IO;
 <h2>Gallery</h2>
 <p>
     Here a is a small gallery<br />
 </p>
-<div id="lightgallery" class="list-unstyled row" lg-uid="lg0">
+<div id="lightgallery">
     @{ foreach (var imgPath in Model.GetImages())
         {
-
             <a href="@imgPath">
                 <img class="img-responsive" src="@imgPath" />
             </a>
@@ -25,6 +24,7 @@
 
 
 @section Scripts {
+
     <script src="https://cdn.rawgit.com/sachinchoolur/lightgallery.js/master/dist/js/lightgallery.js"></script>
     <script src="https://cdn.rawgit.com/sachinchoolur/lg-autoplay.js/master/dist/lg-autoplay.js"></script>
     <script src="https://cdn.rawgit.com/sachinchoolur/lg-fullscreen.js/master/dist/lg-fullscreen.js"></script>
@@ -40,9 +40,13 @@
             progressBar: true,
             fullScreen: true,
             zoom: true,
-            animateThumb: true,
+            animateThumb: false,
             showThumbByDefault: true
 
         });
+    </script>
+    <script src="~/js/jquery.justifiedGallery.min.js"></script>
+    <script>    
+        $("#lightgallery").justifiedGallery();
     </script>
 }
