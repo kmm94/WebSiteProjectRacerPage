@@ -10,20 +10,17 @@
 <h2>Gallery</h2>
 <p>
     Here a is a small gallery<br />
-    <a asp-page="/ImageUpload">click here if you want to upload a picture to the gallery</a>
 </p>
-
-
-<div id="lightgallery">
-    @{ foreach (var imgPath in Model.GetImages())
-        {
-            <a href="@imgPath">
-                <img class="img-responsive" src="@imgPath" />
-            </a>
+    <div id="lightgallery">
+        @{ foreach (var imgPath in Model.GetImages())
+            {
+                <a href="@imgPath">
+                    <img class="img-responsive" src="@imgPath" />
+                </a>
             }
-
         }
-</div>
+    </div>
+
 
 @section Scripts {
     <script src="https://cdn.rawgit.com/sachinchoolur/lightgallery.js/master/dist/js/lightgallery.js"></script>

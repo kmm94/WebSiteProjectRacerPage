@@ -10,7 +10,10 @@ namespace WebSiteProjectRacerPage.Pages
 {
     public class AdminModel : PageModel
     {
+        [BindProperty]
         public string AboutMeText { get; set; }
+        [BindProperty]
+        public string[] Subbs { get; set; }
 
         public async Task OnGetAsync()
         {
@@ -20,13 +23,18 @@ namespace WebSiteProjectRacerPage.Pages
             getsub.Start();
             getaboutMeText.Start();
 
-            var test = await getsub;
+            Subbs = await getsub;
             AboutMeText = await getaboutMeText;
         }
 
         public void OnPost()
         {
+            SaveAboutMeText(AboutMeText);
+        }
 
+        private void SaveAboutMeText(string aboutMeText)
+        {
+            System.IO.File.WriteAllTextAsync("PersistentData/AboutMe.txt", aboutMeText);
         }
 
         private string GetTextForAboutMe()
