@@ -29,7 +29,7 @@ namespace WebSiteProjectRacerPage.Domain
 
                 //saving email in a file
                 string saveingEmail = ";\n" + email;
-                System.IO.File.AppendAllTextAsync("mails/emails.txt", saveingEmail);
+                System.IO.File.AppendAllTextAsync("PersistentData/emails.txt", saveingEmail);
                 Debug.WriteLine("email have been saved");
             
         }
