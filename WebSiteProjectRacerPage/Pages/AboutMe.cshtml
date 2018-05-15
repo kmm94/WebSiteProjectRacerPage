@@ -3,10 +3,12 @@
 @{
     ViewData["Title"] = "AboutMe";
 }
-@using Microsoft.AspNetCore.Html;
+@section Styles {
+    <link rel="stylesheet" href="~/css/AboutMe.css" />
+}
 
 <img class="KarimIMG" src="~/img/KarimPNG.jpg" alt="a selfi with the creator of the page: Karim">
 <h1 class="centertext">About me</h1>
 <div class="centertext">
-   @Model.GetAboutmeText()
+    @Model.GetAboutmeText()
 </div>
