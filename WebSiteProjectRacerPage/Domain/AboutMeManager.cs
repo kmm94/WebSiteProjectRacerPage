@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace WebSiteProjectRacerPage.Domain
 {
@@ -13,9 +10,9 @@ namespace WebSiteProjectRacerPage.Domain
         public string GetTextForAboutMe()
         {
             string result = "The file does not exist.";
-            if (System.IO.File.Exists(aboutMeTextFile))
+            if (File.Exists(aboutMeTextFile))
             {
-                var userData = System.IO.File.ReadAllLines(aboutMeTextFile);
+                var userData = File.ReadAllLines(aboutMeTextFile);
                 if (userData == null)
                 {
                     result = "The file is empty.";
@@ -37,10 +34,11 @@ namespace WebSiteProjectRacerPage.Domain
             try
             {
                 if (aboutMeText != String.Empty)
-                    System.IO.File.WriteAllTextAsync(aboutMeTextFile, aboutMeText);
-            } catch(IOException)
+                    File.WriteAllTextAsync(aboutMeTextFile, aboutMeText);
+            }
+            catch (IOException)
             {
-                Debug.WriteLine("File path does not eksist Path: " + aboutMeTextFile );
+                Debug.WriteLine("File path does not eksist Path: " + aboutMeTextFile);
             }
         }
     }
