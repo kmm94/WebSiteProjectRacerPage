@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
+﻿using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Net.Mail;
@@ -12,7 +10,7 @@ namespace WebSiteProjectRacerPage.Domain
     {
         private string emailFilePath = "PersistentData/emails.txt";
 
-        public static async Task SendEmailAsync(string name, string email)
+        public async Task SendEmailAsync(string name, string email)
         {
             /**
             * Inspiration from:
@@ -34,7 +32,10 @@ namespace WebSiteProjectRacerPage.Domain
             SmtpServer.Port = 587;
             SmtpServer.Credentials = new System.Net.NetworkCredential("karimkuku@hotmail.com", "313Moller");
             SmtpServer.EnableSsl = true;
+            //VS generated supress warning
+#pragma warning disable CS4014 // Because this call is not awaited, execution of the current method continues before the call is completed
             SmtpServer.SendMailAsync(message);
+#pragma warning restore CS4014 // Because this call is not awaited, execution of the current method continues before the call is completed
 
 
             //saving email in a file:
@@ -42,7 +43,10 @@ namespace WebSiteProjectRacerPage.Domain
             try
             {
                 string saveingEmail = ";\n" + email;
-                System.IO.File.AppendAllTextAsync(emailFilePath, saveingEmail);
+                            //VS generated supress warning
+#pragma warning disable CS4014 // Because this call is not awaited, execution of the current method continues before the call is completed
+                File.AppendAllTextAsync(emailFilePath, saveingEmail);
+#pragma warning restore CS4014 // Because this call is not awaited, execution of the current method continues before the call is completed
                 Debug.WriteLine("email have been saved");
             }
             catch (IOException)
@@ -56,9 +60,9 @@ namespace WebSiteProjectRacerPage.Domain
         {
             //check that the file exists:
             string result = "The file does not exist or is empty.";
-            if (System.IO.File.Exists(emailFilePath))
+            if (File.Exists(emailFilePath))
             {
-                var userData = System.IO.File.ReadAllLines(emailFilePath);
+                var userData = File.ReadAllLines(emailFilePath);
                 if (userData != null)
                 {
                     result = null;
