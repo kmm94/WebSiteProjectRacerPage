@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -7,13 +9,13 @@ namespace WebSiteProjectRacerPage.Domain
 {
     public class AboutMeManager
     {
+        private string aboutMeTextFile = "PersistentData/AboutMe.txt";
         public string GetTextForAboutMe()
         {
-            var dataFile = "PersistentData/AboutMe.txt";
             string result = "The file does not exist.";
-            if (System.IO.File.Exists(dataFile))
+            if (System.IO.File.Exists(aboutMeTextFile))
             {
-                var userData = System.IO.File.ReadAllLines(dataFile);
+                var userData = System.IO.File.ReadAllLines(aboutMeTextFile);
                 if (userData == null)
                 {
                     result = "The file is empty.";
@@ -29,10 +31,17 @@ namespace WebSiteProjectRacerPage.Domain
             }
             return result;
         }
+
         public void SaveAboutMeText(string aboutMeText)
         {
-            if(aboutMeText != String.Empty)
-            System.IO.File.WriteAllTextAsync("PersistentData/AboutMe.txt", aboutMeText);
+            try
+            {
+                if (aboutMeText != String.Empty)
+                    System.IO.File.WriteAllTextAsync(aboutMeTextFile, aboutMeText);
+            } catch(IOException)
+            {
+                Debug.WriteLine("File path does not eksist Path: " + aboutMeTextFile );
+            }
         }
     }
 }
