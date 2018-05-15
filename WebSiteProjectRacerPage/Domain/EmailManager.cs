@@ -1,4 +1,5 @@
-﻿using System.Diagnostics;
+﻿using System;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Net.Mail;
@@ -32,21 +33,16 @@ namespace WebSiteProjectRacerPage.Domain
             SmtpServer.Port = 587;
             SmtpServer.Credentials = new System.Net.NetworkCredential("karimkuku@hotmail.com", "313Moller");
             SmtpServer.EnableSsl = true;
-            //VS generated supress warning
-#pragma warning disable CS4014 // Because this call is not awaited, execution of the current method continues before the call is completed
             SmtpServer.SendMailAsync(message);
-#pragma warning restore CS4014 // Because this call is not awaited, execution of the current method continues before the call is completed
+
 
 
             //saving email in a file:
             var emailFilePath = "PersistentData/emails.txt";
             try
             {
-                string saveingEmail = ";\n" + email;
-                            //VS generated supress warning
-#pragma warning disable CS4014 // Because this call is not awaited, execution of the current method continues before the call is completed
+                string saveingEmail = email+ ";\n";
                 File.AppendAllTextAsync(emailFilePath, saveingEmail);
-#pragma warning restore CS4014 // Because this call is not awaited, execution of the current method continues before the call is completed
                 Debug.WriteLine("email have been saved");
             }
             catch (IOException)
@@ -60,10 +56,11 @@ namespace WebSiteProjectRacerPage.Domain
         {
             //check that the file exists:
             string result = "The file does not exist or is empty.";
-            if (File.Exists(emailFilePath))
+            if (File.Exists(emailFilePath) )
             {
                 var userData = File.ReadAllLines(emailFilePath);
-                if (userData != null)
+
+                if (userData != null && userData.Count() != 0)
                 {
                     result = null;
                     foreach (string item in userData)
