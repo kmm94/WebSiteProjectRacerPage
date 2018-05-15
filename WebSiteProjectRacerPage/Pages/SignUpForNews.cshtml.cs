@@ -18,7 +18,7 @@ namespace WebSiteProjectRacerPage.Pages
             var email = Request.Form["email"];
             var name = Request.Form["name"];
 
-            EmailManager.SendEmailAsync(name, email);
+            new EmailManager().SendEmailAsync(name, email);
         }
     }
 }
