@@ -11,6 +11,7 @@
 <div class="row">
     <div class="col-md-12">
         <h2>Upload Image</h2>
+        <p> File must be of type '.jpg'</p>
         <form method="post" enctype="multipart/form-data" id="imageUploadForm" class="dropzone">
             <div class="fallback">
                 <div class="form-group">
@@ -29,7 +30,7 @@
         $("#imageUploadForm").dropzone({
             url: "/imageupload",
             paramName: "image",
-            acceptedFiles: "image/*"
+            acceptedFiles: ".jpg"
         });
     </script>
 }
