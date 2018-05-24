@@ -10,6 +10,8 @@ namespace WebSiteProjectRacerPage.Domain
     public class EmailManager
     {
         private string emailFilePath = "PersistentData/emails.txt";
+        private const string password = "JoaJebi1";
+        private const string sender = "internettechnology2018@hotmail.com";
 
         public async Task SendEmailAsync(string name, string email)
         {
@@ -25,13 +27,13 @@ namespace WebSiteProjectRacerPage.Domain
             MailMessage message = new MailMessage();
             message.To.Add(email);
             message.Subject = "Welcome follower!";
-            message.From = new MailAddress("karimkuku@hotmail.com");
+            message.From = new MailAddress(sender);
             message.Body = "Hi There " + name + "\n You have succesfully subcribed to my news letter";
 
             //setting up server connection:
             SmtpClient SmtpServer = new SmtpClient("smtp.live.com");
             SmtpServer.Port = 587;
-            SmtpServer.Credentials = new System.Net.NetworkCredential("karimkuku@hotmail.com", "313Moller");
+            SmtpServer.Credentials = new System.Net.NetworkCredential(sender, password);
             SmtpServer.EnableSsl = true;
             SmtpServer.SendMailAsync(message);
 
